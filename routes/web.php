@@ -13,14 +13,25 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
 Auth::routes(['verify' => true]);
-Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
-Route::get('/shop', function(){
-    return view('template.index');
-})->name('shop');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('verified');
+
+Route::group(['domain' => '{domain}.ecommerce2.test'], function($domain){
+    Route::get('/', function($domain){
+     $user =  App\Models\User::whereDomainPrefix($domain)->first();
+     if($user){
+        return view('template.index');
+     }else{
+        abort(404);
+     }
+        
+    })->name('shop');
+});
+
+Route::get('/', function () {
+    return view('welcome');
+});
