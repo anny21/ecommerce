@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,4 +36,6 @@ Auth::routes();
 
 Auth::routes(['verify' => true]);
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/dashboard/create-category', [CategoryController::class, 'create'])->name('create.category')->middleware('verified');
+
 });
