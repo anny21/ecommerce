@@ -36,7 +36,3 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('verified');
 });
-
-Route::get('/', function () {
-    return view('welcome');
-});
