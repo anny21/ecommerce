@@ -15,11 +15,6 @@ use App\Http\Controllers\HomeController;
 
 
 
-Auth::routes();
-
-Auth::routes(['verify' => true]);
-Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('verified');
-
 Route::group(['domain' => '{domain}.ecommerce2.test'], function($domain){
     Route::get('/', function($domain){
      $user =  App\Models\User::whereDomainPrefix($domain)->first();
@@ -31,7 +26,13 @@ Route::group(['domain' => '{domain}.ecommerce2.test'], function($domain){
         
     })->name('shop');
 });
-
+Route::group(['domain' => 'ecommerce2.test'], function(){
 Route::get('/', function () {
     return view('welcome');
+});
+
+Auth::routes();
+
+Auth::routes(['verify' => true]);
+Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('verified');
 });
