@@ -20,7 +20,9 @@
     =========================================================
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
-<link href="{{asset('main.css')}}" rel="stylesheet"></head>
+<link href="{{asset('main.css')}}" rel="stylesheet">
+</head>
+@yield('styles')
 <body>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
       
@@ -138,4 +140,5 @@
     </div>
 </div>
 <script type="text/javascript" src="{{asset('assets/scripts/main.js')}}"></script></body>
+@yield('scripts')
 </html>

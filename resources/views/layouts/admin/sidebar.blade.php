@@ -51,13 +51,13 @@
                                     
                                     
                                 >
-                                    <a href="#">
+                                    <a href="{{route('category.index')}}">
                                         <i class="metismenu-icon pe-7s-diamond"></i>
                                         All Categories
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{route('category.create')}}">
                                         <i class="metismenu-icon pe-7s-car"></i>
                                         Create Category
                                     </a>

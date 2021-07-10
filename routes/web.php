@@ -29,13 +29,17 @@ Route::group(['domain' => '{domain}.ecommerce2.test'], function($domain){
 });
 Route::group(['domain' => 'ecommerce2.test'], function(){
 Route::get('/', function () {
-    return view('welcome');
+        return view('welcome');
 });
 
 Auth::routes();
 
 Auth::routes(['verify' => true]);
-Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('verified');
-Route::get('/dashboard/create-category', [CategoryController::class, 'create'])->name('create.category')->middleware('verified');
+Route::group(['prefix' => 'dashboard'], function(){
 
+    Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('verified');
+    Route::get('/create-category', [CategoryController::class, 'create'])->name('category.create')->middleware('verified');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index')->middleware('verified');
+
+});
 });
